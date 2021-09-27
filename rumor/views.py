@@ -21,13 +21,13 @@ from rumor import models
 from rumor.cnn_method import train_parameters, CNN
 from rumor.models import User, IMG, News, get_userid, Question, Answer, Like
 
-auth = oss2.Auth('LTAI5tKH2LcEMVzXuL7niFva', 'QfC2aL90KWEpnAInTaVkepA7zjG2Yq')
+# auth = oss2.Auth('my-own-key', 'my-own-key')
 endpoint = 'https://oss-cn-chengdu.aliyuncs.com'
 # bucket域名：
 # xdmeng-rumor-demo.oss-cn-chengdu.aliyuncs.com
-bucket = oss2.Bucket(auth, endpoint, 'xdmeng-rumor-demo')
+bucket = oss2.Bucket(auth, endpoint, 'my-own-lab')
 # 基础访问链接，根据情况修改
-base_url = 'https://xdmeng-rumor-demo.oss-cn-chengdu.aliyuncs.com/'
+base_url = 'my-own-url'
 
 
 def toLogin(request):
