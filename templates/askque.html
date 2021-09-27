@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>开始提问！</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body{
+            padding-top: 100px;
+            margin: 0;
+            background: url("https://xdmeng-rumor-demo.oss-cn-chengdu.aliyuncs.com/background/006AkgtYgy1ghhcrec5kpj30x30ju4o3.jpg");
+            background-size: cover;
+        }
+        .navbar{
+            border: none;
+        }
+        .form-group input[type="text"]{
+            border: none;
+            border-bottom: 1px solid #0f0f0f;
+            background: transparent;
+            outline: none;
+            color: #fff;
+            font-size: 14px;
+            height: 30px;
+            border-radius: 0px;
+        }
+        .btn_search{
+            margin-top: 8px;
+            text-align: center;
+            border:none;
+            outline: none;
+            height: 30px;
+            border-radius: 5px;
+            background: #1b6d85;
+            color: #fff;
+            font-size: 12px;
+        }
+        .ask_form{
+            width: 85%;
+            max-width: 600px;
+            background: #f1f1f1;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            padding:30px 40px;
+            box-sizing: border-box;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 0 20px #000000b3;
+            font-family: sans-serif;
+        }
+        .ask_form h1{
+            margin-top: 0;
+            font-weight: 200;
+        }
+        .txt_title{
+            border: 1px solid gray;
+            margin: 8px 0px;
+            padding: 12px 18px;
+            border-radius: 8px;
+        }
+        .txt_title p{
+            display: block;
+            text-align: left;
+            color: #333;
+            font-weight: bold;
+            font-size: 15px;
+        }
+        .txt_title input,.txt_title textarea{
+            width: 100%;
+            border: none;
+            background: none;
+            outline: none;
+            font-size: 18px;
+            margin-top: 6px;
+        }
+        .ask_btn{
+            display: block;
+            outline: none;
+            border: none;
+            background: #9b59b6;
+            padding: 14px 0;
+            color: white;
+            cursor:  pointer;
+            margin-top: 8px;
+            width: 100%;
+            border-radius: 8px;
+        }
+
+    </style>
+</head>
+<body>
+    <nav id="main_navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand" style="color: #a94442; padding-top: 20px; font-size: 25px; font-weight: bold">网络谣言检测</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul id="main_nav" class="nav navbar-nav" role="tablist" >
+                    <li><a href="http://127.0.0.1:8000/rumor/index"
+                                          style="font-size: 18px; font-weight: bold; padding: 20px 20px">主页</a></li>
+                    <li><a href="http://127.0.0.1:8000/rumor/toDetect"
+                           style="font-size: 18px; font-weight: bold; padding: 20px 20px">检测</a></li>
+                    <li  class="active"><a href="http://127.0.0.1:8000/rumor/toQuestion"
+                           style="font-size: 18px; font-weight: bold; padding: 20px 20px">提问</a></li>
+                    <li><a href="http://127.0.0.1:8000/rumor/toMyinfo"
+                           style="font-size: 18px; font-weight: bold; padding: 20px 20px">我的</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><p style="font-size: 18px;text-align: center; padding-top: 16px">{{ request.session.username }}</p></li>
+                    <li><a href="http://127.0.0.1:8000/rumor/toLogin"
+                           style="font-size: 18px; font-weight: bold; padding: 20px 20px">登录</a></li>
+                    <li><a href="http://127.0.0.1:8000/rumor/toRegister"
+                           style="font-size: 18px; font-weight: bold; padding: 20px 20px">注册</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="ask_form">
+        <h1>发起你的提问</h1>
+        <form action="/rumor/askQue/" method="post">
+            {% csrf_token %}
+            <div class="txt_title">
+                <p>提问标题：</p>
+                <input type="text" name="ask_title" value="" placeholder="简要概括你的问题">
+            </div>
+            <div class="txt_title">
+                <p>提问内容：</p>
+                <textarea name="ask_content" class="ask_content"></textarea>
+            </div>
+            <input class="ask_btn" type="submit" value="发布" href="#">
+        </form>
+
+    </div>
+    
+        {% if messages %}
+        <script>
+            {% for msg in messages %}
+                alert('{{ msg.message }}');
+            {% endfor %}
+        </script>
+        {% endif %}
+
+</body>
+</html>

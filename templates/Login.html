@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+</head>
+<body class="login_body">
+    <div class="login_box">
+    <img src="../static/img/login_avatar.png" class="login_avatar">
+        <h1>请您登陆</h1>
+        <form action="/rumor/Login/" method="post">
+            {% csrf_token %}
+            <p>用户名</p>
+            <input type="text" name="username" placeholder="请输入用户名">
+            <p>密码</p>
+            <input type="password" name="password" placeholder="请输入密码">
+            <input type="submit" name="login_btn" value="登录">
+            <a href="#">忘记密码？</a><br>
+            <a href="{% url 'toRegister' %}">没有账号？</a><br>
+        </form>
+    </div>
+
+        {% if messages %}
+        <script>
+            {% for msg in messages %}
+                alert('{{ msg.message }}');
+            {% endfor %}
+        </script>
+        {% endif %}
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新闻详情</title>
+    <style>
+        .news_info{
+            background-color: white;
+        }
+
+        .news_info h1{
+            text-align: center;
+            padding-top: 40px;
+            color: #30336b;
+            font-size: 30px;
+        }
+
+        .news_content h2{
+            text-align: center;
+            padding-top: 10px;
+            color: #30336b;
+            font-size: 20px;
+        }
+
+        .news_top span{
+            text-align: center;
+            display:block;
+            font-weight: bold;
+        }
+
+        .news_content p{
+            padding: 0px 200px 0px 200px;
+        }
+
+        .news_top hr{
+            width: 1200px;
+        }
+
+    </style>
+</head>
+<body class="item_body">
+    <div class="news_info">
+        <h1>{{ new.news_title }}</h1>
+        <div class="news_top">
+            <span>发布时间：{{ new.up_time }} {{ new.isTrue }}<a href="/rumor/likeNews/" style="padding-left: 10px">收藏</a>
+            <a href="/rumor/index/" style="padding-left: 10px">返回</a>
+            </span>
+            <hr>
+        </div>
+        <div class="news_content">
+            <h2>{{ new.news_title }}</h2>
+            <p>{{ res }}</p>
+        </div>
+    </div>
+</body>
+</html>

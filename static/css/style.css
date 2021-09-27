@@ -1,0 +1,262 @@
+.login_body{
+    margin: 0;
+    padding: 0;
+    background: url("https://xdmeng-rumor-demo.oss-cn-chengdu.aliyuncs.com/background/6aa3df83gy1gg3ocby2joj20zg0l91hg.jpg");
+    background-size: cover;
+
+    font-family: sans-serif;
+}
+
+.register_body{
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background: url("https://xdmeng-rumor-demo.oss-cn-chengdu.aliyuncs.com/background/6aa3df83gy1gg3ocby2joj20zg0l91hg.jpg");
+    background-size: cover;
+    font-family: sans-serif;
+}
+
+
+.login_box{
+    width: 380px;
+    height: 480px;
+    background: #2d3436;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box;
+    padding: 70px 30px;
+}
+
+.login_avatar{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: -50px;
+    left: calc(50% - 50px);
+}
+
+h1{
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 22px;
+}
+
+.login_box p{
+    margin: 0 0 10px;
+    padding: 0;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.login_box input{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.login_box input[type="text"], input[type="password"], input[type='email']
+{
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: 40px;
+    color: #fff;
+    font-size: 14px;
+}
+
+.login_box input[type="submit"]
+{
+    border:none;
+    outline: none;
+    height: 40px;
+    background: #e74c3c;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.login_box input[type="submit"]:hover
+{
+    cursor: pointer;
+    background: #ffc107;
+    color: #000;
+}
+
+.login_box a{
+    text-decoration: none;
+    font-size: 15px;
+    line-height: 20px;
+    color: darkgray;
+
+}
+
+.login_box a:hover
+{
+    color: #ffc107;
+}
+
+.register_box{
+    width: 400px;
+    height: 800px;
+    background: #2d3436;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box;
+    padding: 70px 30px;
+
+}
+
+.register_box p{
+    margin: 0 0 10px;
+    padding: 0;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.register_box input{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.register_box input[type="text"], input[type="password"], input[type="email"]
+{
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: 40px;
+    color: #fff;
+    font-size: 14px;
+}
+
+.register_box button{
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #e74c3c;
+    color: #fff;
+    font-size: 18px;
+    width: 80%;
+    margin-left: 35px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.register_box button:hover
+{
+    cursor: pointer;
+    background: #ffc107;
+    color: #000;
+}
+
+.register_box input[type="submit"]
+{
+    border:none;
+    outline: none;
+    height: 40px;
+    background: #e74c3c;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.register_box input[type="submit"]:hover
+{
+    cursor: pointer;
+    background: #ffc107;
+    color: #000;
+}
+
+
+.register_box a{
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 20px;
+    color: darkgray;
+    text-align: center;
+    margin: 0 0 5px;
+}
+
+.register_box a:hover
+{
+    color: #ffc107;
+}
+
+.news_info{
+    background-color: white;
+}
+
+.news_info h1{
+    text-align: center;
+    padding-top: 40px;
+    color: #30336b;
+    font-size: 30px;
+}
+
+.news_content h2{
+    text-align: center;
+    padding-top: 10px;
+    color: #30336b;
+    font-size: 20px;
+}
+
+.news_top span{
+    text-align: center;
+    display:block;
+    font-weight: bold;
+}
+
+.news_content p{
+    padding: 0px 200px 0px 200px;
+}
+
+.news_top hr{
+    width: 1200px;
+}
+
+.detect_box{
+    text-align: center;
+    margin-top: 100px;
+}
+
+.detect_content{
+    width: 500px;
+    height: 100px;
+}
+
+.detect_box input[type="submit"]
+{
+    border:none;
+    outline: none;
+    height: 40px;
+    width: 100px;
+    background: #2980b9;
+    color: #fff;
+    font-size: 17px;
+    border-radius: 5px;
+}
+
+.detect_box input[type="submit"]:hover
+{
+    cursor: pointer;
+    background: #1abc9c;
+    color: #000;
+}
+
+.detect_box label
+{
+    font-size: 20px;
+    color: brown;
+    font-weight: bold;
+}
+
+.item_body{
+
+}

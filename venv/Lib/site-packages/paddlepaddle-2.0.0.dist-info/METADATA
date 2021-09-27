@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: paddlepaddle
+Version: 2.0.0
+Summary: Parallel Distributed Deep Learning
+Home-page: UNKNOWN
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: requests (>=2.20.0)
+Requires-Dist: protobuf (>=3.1.0)
+Requires-Dist: gast (==0.3.3)
+Requires-Dist: Pillow
+Requires-Dist: six
+Requires-Dist: decorator
+Requires-Dist: astor
+Requires-Dist: numpy (>=1.13) ; python_version >= "3.5" and platform_system != "Windows"
+Requires-Dist: numpy (<=1.19.3,>=1.13) ; python_version >= "3.5" and platform_system == "Windows"
+
+UNKNOWN
+
+

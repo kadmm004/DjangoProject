@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人主页</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"/>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+    <style>
+        body{
+            padding-top: 50px;
+            height: 100vh;
+            background: url('https://xdmeng-rumor-demo.oss-cn-chengdu.aliyuncs.com/background/6aa3df83gy1gg3oee61evj20x30ju1by.jpg') no-repeat center;
+            background-size: cover ;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .navbar{
+            border: none;
+        }
+        .form-group input[type="text"]{
+            border: none;
+            border-bottom: 1px solid #0f0f0f;
+            background: transparent;
+            outline: none;
+            color: #fff;
+            font-size: 14px;
+            height: 30px;
+            border-radius: 0px;
+        }
+        .btn_search{
+            margin-top: 8px;
+            text-align: center;
+            border: none;
+            outline: none;
+            height: 30px;
+            border-radius: 5px;
+            background: #1b6d85;
+            color: #fff;
+            font-size: 12px;
+            width: 50px;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+        }
+
+        .profile_card{
+            width: 400px;
+            text-align: center;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .card_header{
+            background: #2c3a47;
+            padding: 50px 40px;
+        }
+        .card_list{
+            background: #dfe4ea;
+            padding: 20px 40px;
+        }
+        .avatar_info{
+            display: inline-block;
+            padding: 8px;
+            background: linear-gradient(130deg, #74b9ff, #e66767);
+            margin: auto;
+            border-radius: 50%;
+            background-size: 200% 200%;
+            animation: animated-gradient 2s linear infinite;
+        }
+        @keyframes animated-gradient{
+            25%{
+             background-position: left bottom;
+            }
+            50%{
+                background-position: right bottom;
+            }
+            75%{
+                background-position: right top;
+            }
+            100%{
+                background-position: left top;
+            }
+        }
+        .avatar_info img{
+            display: block;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+        .info_name{
+            color: #f2f2f2;
+            font-size: 28px;
+            font-weight: 600;
+            margin: 10px 0;
+        }
+        .info_btn{
+            display: inline-block;
+            padding: 12px 50px;
+            color: #e66767;
+            border: 2px solid #e66767;
+            border-radius: 6px;
+            margin-top: 16px;
+            transition: .3s linear;
+        }
+        .info_btn:hover{
+            background: #e66767;
+            color: #f2f2f2;
+        }
+        .card_footer{
+            background: #f4f4f4;
+            padding: 60px 10px;
+        }
+        .infos{
+            display: flex;
+            align-items: center;
+        }
+        .info_item{
+            flex: 1;
+            font-size: 13px;
+            color: #e66767;
+        }
+        .info_item span{
+            display: block;
+            color: #2c3a47;
+            font-size: 10px;
+        }
+        .info_border{
+            width: 1px;
+            height: 30px;
+            background: #bbb;
+        }
+
+        .card_info_edit{
+            background: #f4f4f4;
+            margin:0 auto;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            display: none;
+        }
+        .card_info_edit input[type='email'],input[type='password'], input[type='text']{
+            border: none;
+            outline: none;
+            border-bottom: 1px solid black;
+            background: transparent;
+            font-size: 13px;
+        }
+        .card_info_edit p{
+            margin: 5px 0px 0px;
+            font-weight: bold;
+            padding: 0;
+            font-size: 14px;
+        }
+        .card_info_edit input[type='file']{
+            text-align: center;
+            padding-left: 100px;
+        }
+        .btn_list{
+            margin: 20px;
+            border: none;
+            outline: none;
+            border-bottom: 1px solid #e66767;
+            background: transparent;
+            font-size: 18px;
+            color: #e66767;
+        }
+        .btn_form{
+            display: inline-block;
+        }
+
+
+    </style>
+</head>
+<body>
+    <nav id="main_navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand" style="color: #a94442; padding-top: 20px; font-size: 25px; font-weight: bold">网络谣言检测</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul id="main_nav" class="nav navbar-nav" role="tablist" >
+                    <li><a href="http://127.0.0.1:8000/rumor/index"
+                                          style="font-size: 18px; font-weight: bold; padding: 20px 20px">主页</a></li>
+                    <li><a href="http://127.0.0.1:8000/rumor/toDetect"
+                           style="font-size: 18px; font-weight: bold; padding: 20px 20px">检测</a></li>
+                    <li><a href="http://127.0.0.1:8000/rumor/toQuestion"
+                           style="font-size: 18px; font-weight: bold; padding: 20px 20px">提问</a></li>
+                    <li class="active"><a href="http://127.0.0.1:8000/rumor/toMyinfo"
+                           style="font-size: 18px; font-weight: bold; padding: 20px 20px">我的</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><p style="font-size: 18px;text-align: center; padding-top: 16px">{{ request.session.username }}</p></li>
+                    <li><a href="http://127.0.0.1:8000/rumor/toLogin"
+                           style="font-size: 18px; font-weight: bold; padding: 20px 20px">{{ request.session.state }}</a></li>
+                    <li><a href="http://127.0.0.1:8000/rumor/toRegister"
+                           style="font-size: 18px; font-weight: bold; padding: 20px 20px">注册</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="info_card">
+        <div class="profile_card">
+            <!-- 基本信息 -->
+            <div class="card_header">
+                <div class="avatar_info">
+                    <img src="{{ u_img }}" alt="此处为头像图片">
+                </div>
+                <div class="info_name">{{ u.username }}</div>
+                <input class="info_btn" type="button" value="修改密码" style="background-color: #2E3A47" id="btn_edit_pwd" />
+            </div>
+            <!-- 修改密码框 -->
+            <div class="card_info_edit" id="card_pwd_edit">
+                <div class="edit">
+                    <form class="edit_form" action="/rumor/pwdEdit/" method="post">
+                        {% csrf_token %}
+                        <p>您的邮箱</p>
+                        <input type="email" name="ack_email" placeholder="请输入您的邮箱">
+                        <p>旧密码</p>
+                        <input type="password" name="old_pwd" placeholder="请输入原先的密码">
+                        <p>新密码</p>
+                        <input type="password" name="new_pwd" placeholder="请输入新的密码">
+                        <p>确认密码</p>
+                        <input type="password" name="ack_pwd" placeholder="请确认新的密码"><br>
+                        <input class="info_btn" type="submit" value="确认信息" id="btn_pwd_save" />
+                    </form>
+                </div>
+            </div>
+            <!-- 详细信息 -->
+            <div class="card_footer">
+                <div class="infos">
+                    <div class="info_item">
+                    <span>{{ u.nickname }}</span>昵称
+                </div>
+                <div class="info_border"></div>
+                <div class="info_item">
+                    <span>{{ u.email }}</span>邮箱
+                </div>
+                </div>
+                <input class="info_btn" type="button" value="修改信息" id="btn_edit_info" />
+            </div>
+            <!-- 修改信息框 -->
+            <div class="card_info_edit" id="card_info_edit">
+                <div class="edit">
+                    <form class="edit_form" action="/rumor/infoEdit/" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <p>新昵称</p>
+                        <input type="text" name="new_nickname" placeholder="{{ request.session.username }}">
+                        <p>新邮箱</p>
+                        <input type="email" name="new_email" placeholder="{{ u.email }}">
+                        <p>上传头像</p>
+                        <input type="file" name="myfile" id="i1" accept="image/*" class="btn_upload"><br>
+                        <input class="info_btn" type="submit" value="确认信息" id="btn_edit_save" />
+                    </form>
+                </div>
+
+            </div>
+            <div class="card_list">
+                <form class="btn_form" action="/rumor/toMyLike/">
+                    <input class="btn_list" type="submit" value="我的收藏" id="btn_likelist" />
+                </form>
+                <form class="btn_form" action="/rumor/toMyAsk/">
+                    <input class="btn_list" type="submit" value="我的提问" id="btn_asklist" />
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+        <script>
+            console.log(111);
+			function my$(id) {
+				return document.getElementById(id);
+			}
+			<!-- 修改信息 -->
+			my$("btn_edit_info").onclick = function() {
+				my$("card_info_edit").style.display = "block";
+			};
+			my$("btn_edit_save").onclick = function() {
+				my$("card_info_edit").style.display = "none";
+			};
+			<!-- 修改信息 -->
+            my$("btn_edit_pwd").onclick = function() {
+				my$("card_pwd_edit").style.display = "block";
+			};
+			my$("btn_pwd_save").onclick = function() {
+				my$("card_pwd_edit").style.display = "none";
+			};
+        </script>
+
+        {% if messages %}
+        <script>
+            {% for msg in messages %}
+                alert('{{ msg.message }}');
+            {% endfor %}
+        </script>
+        {% endif %}
+
+</body>
+</html>

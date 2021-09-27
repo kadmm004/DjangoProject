@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>提问回答</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body{
+            padding-top: 50px;
+            background: url("https://xdmeng-rumor-demo.oss-cn-chengdu.aliyuncs.com/background/006AkgtYgy1goxnid0r95j30x30jun5c.jpg");
+            background-size: cover ;
+            background-repeat:no-repeat;
+            background-attachment:fixed;
+            background-position:center;
+        }
+        .navbar{
+            border: none;
+        }
+        .form-group input[type="text"]{
+            border: none;
+            border-bottom: 1px solid #0f0f0f;
+            background: transparent;
+            outline: none;
+            color: #fff;
+            font-size: 14px;
+            height: 30px;
+            border-radius: 0px;
+        }
+        .btn_search{
+            margin-top: 8px;
+            text-align: center;
+            border:none;
+            outline: none;
+            height: 30px;
+            border-radius: 5px;
+            background: #1b6d85;
+            color: #fff;
+            font-size: 12px;
+        }
+        .question_title button{
+            margin-top: 50px;
+            margin-left: 20px;
+            padding: 10px;
+            height: 50px;
+            border: none;
+            border-bottom: 1px solid #9b59b6;
+            border-radius: 8px;
+            background: #9b59b6;
+            box-shadow: 5px 5px 20px #000000b3;
+            font-size: 22px;
+            color: white;
+
+        }
+        .ques_list{
+            position: relative;
+            width: 1000px;
+            margin: 50px auto;
+
+            background: #f1f1f1;
+            box-shadow: 0 0 20px #000000b3;
+            border-radius: 8px;
+        }
+        .ques_list ul{
+            list-style: none;
+            padding: 15px 30px;
+        }
+        .ques_list ul li{
+            min-height: 100px;
+            padding: 15px 20px;
+            border-bottom: 1px dashed #ccc;
+        }
+        .ques_list ul li img{
+            float: left;
+            width: 150px;
+            height: 100px;
+            margin-right: 20px;
+        }
+        .ques_list ul li h3{
+            color: #333;
+            font-size: 20px;
+            line-height: 40px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .ques_list ul li h3 span{
+            float: right;
+            color: #999;
+            font-size: 16px;
+            font-weight: normal;
+            padding-right: 20px;
+        }
+        .ques_list ul li p{
+            padding-top: 5px;
+            color: #999;
+            font-size: 14px;
+            line-height: 25px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+        }
+    </style>
+</head>
+<body>
+    <nav id="main_navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand" style="color: #a94442; padding-top: 20px; font-size: 25px; font-weight: bold">网络谣言检测</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul id="main_nav" class="nav navbar-nav" role="tablist" >
+                    <li><a href="http://127.0.0.1:8000/rumor/index"
+                                          style="font-size: 18px; font-weight: bold; padding: 20px 20px">主页</a></li>
+                    <li><a href="http://127.0.0.1:8000/rumor/toDetect"
+                           style="font-size: 18px; font-weight: bold; padding: 20px 20px">检测</a></li>
+                    <li class="active"><a href="http://127.0.0.1:8000/rumor/toQuestion"
+                           style="font-size: 18px; font-weight: bold; padding: 20px 20px">提问</a></li>
+                    <li><a href="http://127.0.0.1:8000/rumor/toMyinfo"
+                           style="font-size: 18px; font-weight: bold; padding: 20px 20px">我的</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><p style="font-size: 18px;text-align: center; padding-top: 16px">{{ request.session.username }}</p></li>
+                    <li><a href="http://127.0.0.1:8000/rumor/toLogin"
+                           style="font-size: 18px; font-weight: bold; padding: 20px 20px">{{ request.session.state }}</a></li>
+                    <li><a href="http://127.0.0.1:8000/rumor/toRegister"
+                           style="font-size: 18px; font-weight: bold; padding: 20px 20px">注册</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="body_question" class="container">
+            <div class="question_title">
+                <a href="http://127.0.0.1:8000/rumor/toAskque"><button>点击此处，提出你的问题</button></a>
+            </div>
+    </div>
+
+    <div id="question_main" class="container">
+            <div class="ques_list">
+                <ul class="ques_fix">
+                    {% for Question in ques %}
+                    <li>
+                        <h3>
+                            <span>{{ Question.ask_time }}</span>
+                            <span>{{ Question.user_id.username }}</span>
+                            <a target="_blank" href="/rumor/toQueInfo/?que_id={{ Question.que_id }}">{{ Question.que_title }}</a>
+                        </h3>
+                        <p>{{ Question.que_content }}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+    </div>
+
+        {% if messages %}
+        <script>
+            {% for msg in messages %}
+                alert('{{ msg.message }}');
+            {% endfor %}
+        </script>
+        {% endif %}
+</body>
+</html>

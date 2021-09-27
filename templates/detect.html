@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>检测界面</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body{
+            padding-top: 50px;
+            background: url("https://xdmeng-rumor-demo.oss-cn-chengdu.aliyuncs.com/background/006AkgtYgy1gp3esc2xbdj30x30jugxv.jpg");
+            background-size: cover;
+        }
+        .navbar{
+            border: none;
+        }
+        .form-group input[type="text"]{
+            border: none;
+            border-bottom: 1px solid #0f0f0f;
+            background: transparent;
+            outline: none;
+            color: #fff;
+            font-size: 14px;
+            height: 30px;
+            border-radius: 0px;
+        }
+        .btn_search{
+            margin-top: 8px;
+            text-align: center;
+            border:none;
+            outline: none;
+            height: 30px;
+            border-radius: 5px;
+            background: #1b6d85;
+            color: #fff;
+            font-size: 12px;
+        }
+        .detect_content{
+            width: 500px;
+            height: 100px;
+        }
+
+        .detect_box input[type="submit"] {
+            border:none;
+            outline: none;
+            height: 40px;
+            width: 100px;
+            background: #2980b9;
+            color: #fff;
+            font-size: 17px;
+            border-radius: 5px;
+        }
+
+        .detect_box input[type="submit"]:hover {
+            cursor: pointer;
+            background: #1abc9c;
+            color: #000;
+        }
+
+        .detect_box label {
+            font-size: 20px;
+            color: brown;
+            font-weight: bold;
+        }
+        .detect_box{
+            width: 85%;
+            max-width: 800px;
+            background: #f1f1f1;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            padding:30px 40px;
+            box-sizing: border-box;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 0 20px #000000b3;
+            font-family: sans-serif;
+        }
+        .detect_box h1{
+            margin-top: 0;
+            font-weight: 500;
+            font-size: 25px;
+            font-family:"Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+        }
+        .detect_box label{
+            display: block;
+            text-align: left;
+            color: #333;
+            text-transform: uppercase;
+            font-size: 14px;
+            color: #a94442;
+        }
+        .detect_box textarea{
+            width: 100%;
+            background: none;
+            outline: none;
+            font-size: 18px;
+            margin-top: 6px;
+        }
+        .detect_box input[type='submit']{
+            display: block;
+            background: #9b59b6;
+            padding: 10px 0;
+            color: white;
+            text-transform: uppercase;
+            cursor:  pointer;
+            margin-top: 20px;
+            width: 50%;
+            max-width: 200px;
+            margin-left: 260px;
+        }
+    </style>
+
+</head>
+<body class="detect_body">
+    <nav id="main_navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand" style="color: #a94442; padding-top: 20px; font-size: 25px; font-weight: bold">网络谣言检测</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul id="main_nav" class="nav navbar-nav" role="tablist" >
+                    <li><a href="http://127.0.0.1:8000/rumor/index"
+                                          style="font-size: 18px; font-weight: bold; padding: 20px 20px">主页</a></li>
+                    <li class="active"><a href="http://127.0.0.1:8000/rumor/toDetect"
+                           style="font-size: 18px; font-weight: bold; padding: 20px 20px">检测</a></li>
+                    <li><a href="http://127.0.0.1:8000/rumor/toQuestion"
+                           style="font-size: 18px; font-weight: bold; padding: 20px 20px">提问</a></li>
+                    <li><a href="http://127.0.0.1:8000/rumor/toMyinfo"
+                           style="font-size: 18px; font-weight: bold; padding: 20px 20px">我的</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><p style="font-size: 18px;text-align: center; padding-top: 16px">{{ request.session.username }}</p></li>
+                    <li><a href="http://127.0.0.1:8000/rumor/toLogin"
+                           style="font-size: 18px; font-weight: bold; padding: 20px 20px">{{ request.session.state }}</a></li>
+                    <li><a href="http://127.0.0.1:8000/rumor/toRegister"
+                           style="font-size: 18px; font-weight: bold; padding: 20px 20px">注册</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="detect_box">
+        <h1>请输入要检测的新闻，输入内容尽可能保证完整：</h1><br>
+        <div class="detect_title">
+            <form action="/rumor/detect/" method="post">
+                {% csrf_token %}<br>
+                <textarea name="detect_content" class="detect_content"></textarea><br>
+                <label>检测结果如下</label>
+                <label><p>{{ text }}</p>检测结果为<p>0谣言{{ res }}</p></label>
+                <input type="submit" name="detect_btn" value="开始检测">
+            </form>
+        </div>
+    </div>
+
+        {% if messages %}
+        <script>
+            {% for msg in messages %}
+                alert('{{ msg.message }}');
+            {% endfor %}
+        </script>
+        {% endif %}
+</body>
+</html>
